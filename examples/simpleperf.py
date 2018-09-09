@@ -58,3 +58,39 @@ if __name__ == '__main__':
     setLogLevel( 'info' )
     # Prevent test_simpleperf from failing due to packet loss
     perfTest( lossy=( 'testmode' not in argv ) )
+
+"""
+Output is like:
+$ sudo python simpleperf.py 
+*** Creating network
+*** Adding controller
+*** Adding hosts:
+h1 h2 h3 h4 
+*** Adding switches:
+s1 
+*** Adding links:
+(10.00Mbit 5ms delay 10.00000% loss) (10.00Mbit 5ms delay 10.00000% loss) (h1, s1) (10.00Mbit 5ms delay 10.00000% loss) (10.00Mbit 5ms delay 10.00000% loss) (h2, s1) (10.00Mbit 5ms delay 10.00000% loss) (10.00Mbit 5ms delay 10.00000% loss) (h3, s1) (10.00Mbit 5ms delay 10.00000% loss) (10.00Mbit 5ms delay 10.00000% loss) (h4, s1) 
+*** Configuring hosts
+h1 (cfs 12500/100000us) h2 (cfs 12500/100000us) h3 (cfs 12500/100000us) h4 (cfs 12500/100000us) 
+*** Starting controller
+c0 
+*** Starting 1 switches
+s1 ...(10.00Mbit 5ms delay 10.00000% loss) (10.00Mbit 5ms delay 10.00000% loss) (10.00Mbit 5ms delay 10.00000% loss) (10.00Mbit 5ms delay 10.00000% loss) 
+Dumping host connections
+h1 h1-eth0:s1-eth1
+h2 h2-eth0:s1-eth2
+h3 h3-eth0:s1-eth3
+h4 h4-eth0:s1-eth4
+Testing bandwidth between h1 and h4
+*** Iperf: testing UDP bandwidth between h1 and h4 
+*** Results: ['10M', '8.10 Mbits/sec', '8.10 Mbits/sec']
+*** Stopping 1 controllers
+c0 
+*** Stopping 4 links
+....
+*** Stopping 1 switches
+s1 
+*** Stopping 4 hosts
+h1 h2 h3 h4 
+*** Done
+"""
